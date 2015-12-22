@@ -20,4 +20,5 @@ end
  	end
  assert_template 'users/show'
 end
+
 end

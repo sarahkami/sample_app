@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class PasswordResetTest < ActionDispatch::IntegrationTest
+class PasswordResetsTest < ActionDispatch::IntegrationTest
   def setup
     ActionMailer::Base.deliveries.clear
-    @user = users(:michael)
+    @user = users(:hans)
   end
 
   test "password resets" do

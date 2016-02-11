@@ -41,6 +41,7 @@ test "valid signup information with account activation" do
    assert_not is_logged_in?
    # Valid activation token
    get edit_account_activation_path(user.activation_token, email: user.email)
+   
    assert user.reload.activated?
    follow_redirect!
    assert_template 'users/show'

@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /home/sarah/sample_app/test/integration/users_signup_test.rb @ line 44 UsersSignupTest#test_valid_signup_information_with_account_activation:
+
+    [1;34m22[0m: test [31m[1;31m"[0m[31mvalid signup information with account activation[1;31m"[0m[31m[0m [32mdo[0m
+    [1;34m23[0m:    get signup_path
+    [1;34m24[0m:    assert_difference [31m[1;31m'[0m[31mUser.count[1;31m'[0m[31m[0m, [1;34m1[0m [32mdo[0m
+    [1;34m25[0m:      post users_path, [35muser[0m: { [35mname[0m:  [31m[1;31m"[0m[31mExample User[1;31m"[0m[31m[0m,
+    [1;34m26[0m:                               [35memail[0m: [31m[1;31m"[0m[31muser@example.com[1;31m"[0m[31m[0m,
+    [1;34m27[0m:                               [35mpassword[0m:              [31m[1;31m"[0m[31mpassword[1;31m"[0m[31m[0m,
+    [1;34m28[0m:                               [35mpassword_confirmation[0m: [31m[1;31m"[0m[31mpassword[1;31m"[0m[31m[0m }
+    [1;34m29[0m:    [32mend[0m
+    [1;34m30[0m:    assert_equal [1;34m1[0m, [1;34;4mActionMailer[0m::[1;34;4mBase[0m.deliveries.size
+    [1;34m31[0m:    user = assigns([33m:user[0m)
+    [1;34m32[0m:    assert_not user.activated?
+    [1;34m33[0m:    [1;34m# Try to log in before activation.[0m
+    [1;34m34[0m:    log_in_as(user)
+    [1;34m35[0m:    assert_not is_logged_in?
+    [1;34m36[0m:    [1;34m# Invalid activation token[0m
+    [1;34m37[0m:    get edit_account_activation_path([31m[1;31m"[0m[31minvalid token[1;31m"[0m[31m[0m)
+    [1;34m38[0m:    assert_not is_logged_in?
+    [1;34m39[0m:    [1;34m# Valid token, wrong email[0m
+    [1;34m40[0m:    get edit_account_activation_path(user.activation_token, [35memail[0m: [31m[1;31m'[0m[31mwrong[1;31m'[0m[31m[0m)
+    [1;34m41[0m:    assert_not is_logged_in?
+    [1;34m42[0m:    [1;34m# Valid activation token[0m
+    [1;34m43[0m:    get edit_account_activation_path(user.activation_token, [35memail[0m: user.email)
+ => [1;34m44[0m:    binding.pry
+    [1;34m45[0m:    assert user.reload.activated?
+    [1;34m46[0m:    follow_redirect!
+    [1;34m47[0m:    assert_template [31m[1;31m'[0m[31musers/show[1;31m'[0m[31m[0m
+    [1;34m48[0m:    assert is_logged_in?
+    [1;34m49[0m:  [32mend[0m
+

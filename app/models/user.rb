@@ -24,9 +24,13 @@ has_secure_password
   end
 
   def authenticated?(attribute, token)
+    # digest = self.public_send("#{attribute}_digest")
     digest = send("#{attribute}_digest")
+
   	return false if digest.nil?
+    
   	BCrypt::Password.new(digest).is_password?(token)
+    # binding.pry
   end
 
   def forget
@@ -63,7 +67,8 @@ has_secure_password
   end
 
   def create_activation_digest
+
     self.activation_token = User.new_token
-    self.activation_digest = User.digest(activation_digest)
+    self.activation_digest = User.digest(activation_token)
   end
 end

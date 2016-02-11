@@ -42,9 +42,9 @@ has_secure_password
     update_attribute(:activated_at, Time.zone.now)
   end
 
-  # def send_activation_email
-  #   UserMailer.account_activation(self).deliver_now
-  # end
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
+  end
 
   def create_reset_digest
     self.reset_token = User.new_token

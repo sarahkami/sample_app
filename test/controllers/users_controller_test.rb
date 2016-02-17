@@ -4,7 +4,7 @@ class UsersControllerTest < ActionController::TestCase
 
   def setup
     @user = users(:hans)
-    @other_user = users(:rebekka)
+    @other_user = users(:lana)
   end
 
   test "should get new" do
@@ -57,4 +57,14 @@ class UsersControllerTest < ActionController::TestCase
       end
       assert_redirected_to root_url
       end
+
+    test "should redirect following when not logged in" do
+      get :following, id: @user
+      assert_redirected_to login_url
     end
+
+    test "should redirect followers when not logged in" do
+      get :followers, id: @user
+      assert_redirected_to login_url
+    end
+  end
